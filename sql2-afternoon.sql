@@ -115,11 +115,30 @@ where composer is null AND genre_id = (
 
 -- -- -- -- -- -- -- -- --
 -- -- -- Group By -- -- --
+select g.name, count(*) 
+from track t
+join genre g on t.genre_id = g.genre_id
+group by g.name
 
+select g.name, count(*) 
+from track t
+join genre g on t.genre_id = g.genre_id
+where g.name = 'Pop' OR g.name = 'Rock'
+group by g.name
+
+select ar.name, count(al.title) 
+from artist ar
+join album al on ar.artist_id = al.artist_id
+group by ar.name
+order by count(al.title) desc
 
 -- -- -- -- -- -- -- -- --
 -- -- -Use Distinct- -- --
+select distinct composer from track
 
+select distinct billing_postal_code from invoice
+
+select distinct company from customer
 
 -- -- -- -- -- -- -- -- --
 -- -- --Delete Rows- -- --
